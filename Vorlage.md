@@ -9,6 +9,5 @@
 
 ## Donnerstag
 
-
 ## Freitag
 
