@@ -24,6 +24,7 @@
 - Microsoft Excell
 -> Einführung
 -> Formeln
+-> Formatierung
 -> Zahlenformat
 -> Anker setzen
 
