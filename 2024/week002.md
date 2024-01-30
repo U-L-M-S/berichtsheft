@@ -1,8 +1,8 @@
 # Berichtsheft
 
 
-## Montag
-- Microsoft World
+## Montag | 29-01
+- Microsoft Word
 -> Einführung
 -> Shortcuts
 -> Layouts
@@ -16,7 +16,16 @@
 -> Urheberrecht
 -> Rahnmen & Schattierung
 
-## Dienstag
+## Dienstag | 30-01
+- Microsoft Word
+-> Titel Wiederholung
+-> Kapiteldurchbruch
+-> Serienbrief und Datenbank
+- Microsoft Excell
+-> Einführung
+-> Formeln
+-> Zahlenformat
+-> Anker setzen
 
 ## Mittwoch
 
