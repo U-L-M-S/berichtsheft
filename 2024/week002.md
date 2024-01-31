@@ -21,14 +21,21 @@
 -> Titel Wiederholung
 -> Kapiteldurchbruch
 -> Serienbrief und Datenbank
-- Microsoft Excell
+- Microsoft Excel
 -> Einführung
 -> Formeln
 -> Formatierung
 -> Zahlenformat
 -> Anker setzen
 
-## Mittwoch
+## Mittwoch | 31-01
+- Microsoft Excel
+-> UND-Funktion
+-> ODER-Funktion
+-> WENN-Funktion
+-> SVERWEIS-Funktion
+-> WVERWEIS-Funktion
+-> XVERWEIS-Funktion
 
 ## Donnerstag
 
