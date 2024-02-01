@@ -39,7 +39,16 @@
 - XVERWEIS-Funktion
 
 ## Donnerstag | 01-02
-
+> Microsoft Excel
+- kurz wiederholund
+- Pivot Table
+> Microsoft PowerPoint
+- Einführung
+- Layouts
+- Designs
+- Forms
+- Slogans
+- Folienmaster
 
 ## Freitag
 
