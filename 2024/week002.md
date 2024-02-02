@@ -50,7 +50,11 @@
 - Slogans
 - Folienmaster
 
-## Freitag
+## Freitag | 02-02
+> Microsoft PowerPoint
+- kurz wiederholund
+- eigene Präsentation machen
+- Präsentation vorstellen 
 
 ---
 
