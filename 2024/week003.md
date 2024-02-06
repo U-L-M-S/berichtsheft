@@ -11,6 +11,9 @@
 
 >Arbeitsrechten
 ## Dienstag
+>Tarifvertrag
+- Was ist das?
+- Wie entsteht ein neuer Tarifvertrag?
 
 ## Mittwoch
 
