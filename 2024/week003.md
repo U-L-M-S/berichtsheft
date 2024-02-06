@@ -2,10 +2,14 @@
 
 ---
 
-## Montag
+## Montag | 05-02
+>Einführung, was wird unterrichtet
 
-> Einführung
+>Pflichten von Unternehme und Ausbilder
 
+>Sozialversicherungen
+
+>Arbeitsrechten
 ## Dienstag
 
 ## Mittwoch
@@ -17,4 +21,3 @@
 ---
 
 ........................................................
-
