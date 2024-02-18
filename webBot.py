@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
 
+# Description: This script logs into the GFN Lernplattform and prints the content of the loaded page.
 # Read credentials from the JSON file
 with open('credentials.json') as f:
     credentials = json.load(f)
@@ -24,27 +25,25 @@ driver.get(login_url)
 # Wait for the username input box to be present
 username_input = WebDriverWait(driver, 10).until(
     EC.presence_of_element_located((By.ID, 'username'))
-)
+).send_keys(username)
 # Wait for the password input box to be present
 password_input = WebDriverWait(driver, 10).until(
     EC.presence_of_element_located((By.ID, 'password'))
-)
+).send_keys(password)
 # Wait for the login button to be clickable
 login_button = WebDriverWait(driver, 10).until(
     EC.element_to_be_clickable((By.ID, 'loginbtn'))
-)
-# Fill in the login form
-username_input.send_keys('username')
-password_input.send_keys('password')
+).click()
 
-# Click on the submit button
-login_button.click()
+driver.get("https://lernplattform.gfn.de/grade/report/overview/index.php")
+
+input("Press Enter to close the browser window...")
 
 # Wait for the page to load (you may need to adjust the wait time)
-driver.implicitly_wait(5)
+#driver.implicitly_wait(30)
 
 # Print the content of the loaded page
-print(driver.page_source)
+#print(driver.page_source)
 
 # Close the WebDriver
-driver.quit()
+#driver.quit()
