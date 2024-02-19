@@ -1,2 +1,4 @@
 json
 selenium
+bs4
+urllib
