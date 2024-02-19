@@ -4,7 +4,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
-
+import sys
+#Locale Module
 import module
 
 if(__name__ == "__main__"):
@@ -42,7 +43,9 @@ if(__name__ == "__main__"):
     # Wait for the page to load (you may need to adjust the wait time)
     driver.implicitly_wait(30)
 
-
+    if(driver.current_url == "https://lernplattform.gfn.de/login/index.php"):
+        print("Falsche Logindaten!")
+        sys.exit()
 
     #Moodle Lookup.
     userid, modules = module.searchModuleIDsAndUserID(driver)
