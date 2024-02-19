@@ -40,7 +40,7 @@ git clone https://github.com/U-L-M-S/berichtsheft
 ```sh
 cd berichtsheft
 ```
-- install the required packages (I recommend using [CMD](https://learn.microsoft.com/de-de/windows-server/administration/windows-commands/cmd))
+- install the required packages
 ```sh
 pip install -r requerements.txt
 ```
