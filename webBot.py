@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
 import sys
-#Locale Module
+#Own Imports
 import module
 
 if(__name__ == "__main__"):
@@ -48,8 +48,16 @@ if(__name__ == "__main__"):
         sys.exit()
 
     #Moodle Lookup.
-    userid, modules = module.searchModuleIDsAndUserID(driver)
+    userid, modules = module.searchModuleIDsAndUserID(driver) 
     module.setUpMoodleClass(driver,userid,modules)
+    #modules ist eine Liste von verfügbaren Modulen z.B. modules[1]
+    #diese gehen dann in eine Klasse mit diversen variabeln:
+    #modules[i].self.id = int modulID
+    #modules[i].name = STR modulName
+    #modules[i].moodleLink = STR Link zum Modul selber
+    #modules[i].moodleGradeLink = STR Link zum Bewertung vom Modul
+    #modules[i].classbookLink = STR Link zum Klassenbuch vom Modul
+    #modules[i].ClassBookEntry = [] ARRAY mit Tag,Inhalt.
     print(module.printToJson(modules))
     input("Enter-to-exit!")
 
