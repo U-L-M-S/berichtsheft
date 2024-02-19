@@ -1,19 +1,21 @@
 # berichtsheft
-Mypersonal Berichtsheft for my Umschulung by GFN
+Moodle erweiterung für das Berichtsheft von [U-L-M-S](https://github.com/U-L-M-S)
 
 ## Requirements
 - python3
 - json
+- sys
 - selenium
-- Internet connection
+- urllib
 
+- internet
 
 ## Installion 
 ### Windows
 - Make sure you have [git](https://git-scm.com/download/win) on your system and [python3](https://www.python.org/downloads/).
 - Clone the repositoy on your local machine.
 ```sh
-git clone https://github.com/U-L-M-S/berichtsheft
+git clone https://github.com/Coffmann/berichtsheft-moodle-package
 ```
 - go inside the directory you just cloned
 ```sh
@@ -34,7 +36,7 @@ code .
 
 - Clone the repositoy on your local machine.
 ```sh
-git clone https://github.com/U-L-M-S/berichtsheft
+git clone https://github.com/Coffmann/berichtsheft-moodle-package
 ```
 - go inside the directory you just cloned
 ```sh
