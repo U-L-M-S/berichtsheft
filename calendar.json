@@ -36,6 +36,20 @@
 
     {
         "start":"18-03-2024",
+        "end": "22-03-2024",
+        "name": "Clients in Netzwerke einbinden",
+        "code": "LF03"
+    },
+
+    {
+        "start":"25-03-2024",
+        "end": "05-04-2024",
+        "name": "Urlaub",
+        "code": "F"
+    },
+
+    {
+        "start":"08-04-2024",
         "end": "19-04-2024",
         "name": "Clients in Netzwerke einbinden",
         "code": "LF03"
@@ -84,7 +98,28 @@
     },
 
     {
+        "start":"22-07-2024",
+        "end": "02-08-2024",
+        "name": "Urlaub",
+        "code": "F"
+    },
+
+    {
         "start":"05-08-2024",
+        "end": "14-08-2024",
+        "name": "Fachliches Englisch",
+        "code": "LF-F1"
+    },
+
+    {
+        "start":"15-08-2024",
+        "end": "15-08-2024",
+        "name": "Urlaub",
+        "code": "F"
+    },
+
+    {
+        "start":"16-08-2024",
         "end": "16-08-2024",
         "name": "Fachliches Englisch",
         "code": "LF-F1"
