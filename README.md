@@ -1,5 +1,5 @@
-# berichtsheft
-Mypersonal Berichtsheft for my Umschulung by GFN
+# Report Booklet Manager
+Moodle Scraping for my retraining by GFN
 
 ## Requirements
 - python3
