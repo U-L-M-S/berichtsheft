@@ -1,9 +1,22 @@
 from Addons import webBot,module,UserInterface,docWriter
 
 def main():
+    #Starte Browser
+    webBot.webBrowserInit()
+    #LoginUser
+    loginRetry = 3 #Versuche bis abbruch
+    while(loginRetry != 0):
+        webBot.loadLoginInfo()
+        if(webBot.logInGFN()):
+            loginRetry = 0
+        else:
+            loginRetry -=1
+
+    #Start Moodle Lookup:
+    
     #Moodle Lookup.
-    userid, modules = module.searchModuleIDsAndUserID(webBot.driver) 
-    module.setUpMoodleClass(webBot.driver,userid,modules)
+    userid, modules = module.searchModuleIDsAndUserID() 
+    module.setUpMoodleClass(userid,modules)
     #modules ist eine Liste von verfügbaren Modulen z.B. modules[1]
     #diese gehen dann in eine Klasse mit diversen variabeln:
     #modules[i].self.id = int modulID
@@ -13,12 +26,11 @@ def main():
     #modules[i].classbookLink = STR Link zum Klassenbuch vom Modul
     #modules[i].ClassBookEntry = [] ARRAY mit Tag,Inhalt.
     print(module.printToJson(modules))
-    docWriter.createMDFromModul("Wochentest",modules[4])
+    #docWriter.createMDFromModul("Wochentest",modules[4]) #Erstellt eine MD Datei DEBUG
     return
 
-def finishWebBot(): # Wird von webBot gecalled wenn er fertig ist mit dem Browser und man eingeloggt ist.
+if(__name__ == "__main__"):
     main()
-    return
 
 
 

@@ -3,6 +3,7 @@ import bs4
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 from urllib.parse import parse_qs
+from Addons import webBot
 
 class Moodlemodule():
     def __init__(self, modulID, modulName):
@@ -91,12 +92,9 @@ def createModuleGradeLink(Modul,UserID): # Generiert einen Moodle Bewertungs lin
 def createModuleMoodleLink(modul): # Generiert einen Moodle link anhand des Moduls und der URL base
     return baseMoodleURL + "id="+str(modul.id)
 
-def LookUpClassBookEntrys(driver,modul):
+def LookUpClassBookEntrys(modul):
     if(modul.classbookLink != "none"):
-        driver.get(modul.classbookLink) #Öffnet Klassenbuch link
-        # Wait for the page to load (you may need to adjust the wait time)
-        driver.implicitly_wait(10) # Wartet
-        newSoup = BeautifulSoup(driver.page_source,"html.parser") #Lädt die HTML in Beautiful Soup
+        newSoup = BeautifulSoup(webBot.requestHTML(modul.classbookLink),"html.parser") #Lädt die HTML in Beautiful Soup
         for find in newSoup.find_all("tr"): # Sucht die HTML nach allen objekten mit <tr> tag. und geht die mit der for schleife durch
             date = "none" #Set default to None für neuen Tag
             content = [] #Leert Content für neuen tag
@@ -118,12 +116,8 @@ def LookUpClassBookEntrys(driver,modul):
                 modul.setClassBookEntry(date,content) # Classbook Entry ist ein Array mit [[Tag,Array(Content)],[Tag,Array(Content)],[Tag,Array(Content)] usw..]
     return
     
-def LookUpClassBookLink(driver,modul):
-    driver.get(modul.moodleGradeLink) # Lädt die Bewertungsseite
-    # Wait for the page to load (you may need to adjust the wait time)
-    driver.implicitly_wait(10)
-
-    newSoup = BeautifulSoup(driver.page_source,"html.parser") # Lädt HTML in Beautiful Soup
+def LookUpClassBookLink(modul):
+    newSoup = BeautifulSoup(webBot.requestHTML(modul.moodleGradeLink),"html.parser") # Lädt HTML in Beautiful Soup
     result = "none" # Set Default Wert
     for item in newSoup.find_all("a",class_="gradeitemheader"):#Suche die HTML nach <a> objekten mit der class "gradeitemheader" und geht alle mit der for schleife durch
        # print(item.get("href")) #debug
@@ -131,16 +125,16 @@ def LookUpClassBookLink(driver,modul):
             result = item.get("href")+"&view=4" # nimmt den link und packt &view=4 hinzu, um mehr als nur aktuellen monat anzuzeigen und speichert sie in result variable
     return result #return result
 
-def setUpMoodleClass(driver,userID,LIST_of_Modules):
+def setUpMoodleClass(userID,LIST_of_Modules):
     for modul in LIST_of_Modules: # Geht durch eine Liste aus MoodleModul objekten. foreach
         modul.setMoodleLinks(
             createModuleMoodleLink(modul), #
             createModuleGradeLink(modul,userID)
             ) #Erstellt die nötigen Links und packt sie in die Objekt Variablen
         modul.setClassBookLink(
-            LookUpClassBookLink(driver,modul)
+            LookUpClassBookLink(modul)
             ) #Erstellt den Link
-        LookUpClassBookEntrys(driver,modul) # Schreibt das Klassenbuch in das Array
+        LookUpClassBookEntrys(modul) # Schreibt das Klassenbuch in das Array
         #print(modul.id + " | " + modul.name + " | " +modul.moodleLink + " | " + modul.moodleGradeLink + " | " + modul.classbookLink)
         #if(modul == modules[len(modules)-1]):
         #   print(modul.ClassBookEntry)
@@ -148,10 +142,15 @@ def setUpMoodleClass(driver,userID,LIST_of_Modules):
 
 
 #Fragt die Module ab (speichert sie in einer liste) und die UserID:
-def searchModuleIDsAndUserID(driver):
+def searchModuleIDsAndUserID():
     modules = [] # Liste der Module
     setUserID = False # Wurde UserID gefunden/gesetzt?
-    soup = BeautifulSoup(driver.page_source,"html.parser") # Lädt HTML in Beautiful Soup
+    content = "" # Content definieren.
+    if(webBot.driver.current_url != "https://lernplattform.gfn.de/grade/report/overview/index.php"):
+        content = webBot.requestHTML("https://lernplattform.gfn.de/grade/report/overview/index.php")
+    else:
+        content = webBot.driver.page_source
+    soup = BeautifulSoup(content,"html.parser") # Lädt HTML in Beautiful Soup
     for entry in soup.find_all("tbody"):# Sucht nach allen <tbody> objekten und geht sie im forloop durch
         for item in entry.find_all("a"): # Sucht die Teil-HTML der tbody objekte nach <a> objekten durch
             parsed_url = urlparse(item.get("href")) #nimmt sich die hinterlegten links und lädt sie in urlparse
