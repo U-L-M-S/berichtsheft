@@ -2,31 +2,36 @@
     {
         "start":"22-01-2024",
         "end": "26-01-2024",
-        "name": "Test1"
+        "name": "Einführungswoche",
+        "code": "LF00"
     },
 
     {
         "start":"29-01-2024",
         "end": "02-02-2024",
-        "name": "Test2"
+        "name": "Office Management",
+        "code": "LF-F3"
     },
 
     {
         "start":"05-02-2024",
         "end": "09-02-2024",
-        "name": "Test3"
+        "name": "Das Unternehmen und die eigene Rolle im Betrieb",
+        "code": "LF01"
     },
 
     {
         "start":"12-02-2024",
-        "end": "16-02-2024",
-        "name": "Test4"
+        "end": "23-02-2024",
+        "name": "Grundlagen Projektmanagement",
+        "code": "LF-F4"
     },
 
     {
         "start":"19-02-2024",
         "end": "23-02-2024",
-        "name": "Test5"
+        "name": "Clients in Netzwerke einbinden",
+        "code": "LF03"
     },
 
     {
