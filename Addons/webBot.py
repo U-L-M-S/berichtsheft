@@ -50,9 +50,9 @@ def logInGFN(): # Returns True wenn eingeloggt, False wenn nicht.
     return True
 
 
-def requestHTML(URL):
+def requestHTML(URL,timeout = 10):
     driver.get(URL)
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(timeout)
     return driver.page_source
 
 
