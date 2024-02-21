@@ -2,5 +2,4 @@ selenium
 bs4
 urllib
 mdutils
-tkinter
 json
