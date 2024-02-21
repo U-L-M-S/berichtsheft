@@ -29,9 +29,9 @@ def main():
     #modules[i].moodleGradeLink = STR Link zum Bewertung vom Modul
     #modules[i].classbookLink = STR Link zum Klassenbuch vom Modul
     #modules[i].ClassBookEntry = [] ARRAY mit Tag,Inhalt.
-    #print(module.printToJson(modules))
+    print(module.printToJson(modules))
     #docWriter.createMDFromModul("Wochentest",modules[4]) #Erstellt eine MD Datei DEBUG
-    input("Enter to exit.")
+    #input("Enter to exit.")
     return
 
 if(__name__ == "__main__"):

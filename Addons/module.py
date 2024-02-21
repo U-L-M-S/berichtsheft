@@ -13,6 +13,8 @@ class Moodlemodule():
         self.moodleGradeLink = ""# Link zur Modul Bewertungs seite
         self.classbookLink = "" # Link zum Klassenbuch
         self.ClassBookEntry = [] # Einträge ins klassenbuch
+        self.Trainers = [] # Speichert Liste der Trainer
+                           # Jeder Eintrag ist ein Array aus [Name,ImgLink]  
     def setMoodleLinks(self, MoodleLink, Gradelink):
         self.moodleLink = MoodleLink
         self.moodleGradeLink = Gradelink
@@ -65,6 +67,8 @@ Beispiel als JSON ansicht:
 '''
 
 #Vars
+baseIndexURL = "https://lernplattform.gfn.de"
+
 baseMoodleURL = "https://lernplattform.gfn.de/course/view.php?"
 #               https://lernplattform.gfn.de/course/view.php?id=11923
 
@@ -115,6 +119,17 @@ def LookUpClassBookEntrys(modul):
             if(date != "none" and content != []):# Wenn Datum gefunden wurde und Content nicht leer ist dann füge sie zur Modul hinzu
                 modul.setClassBookEntry(date,content) # Classbook Entry ist ein Array mit [[Tag,Array(Content)],[Tag,Array(Content)],[Tag,Array(Content)] usw..]
     return
+
+def LookUpTrainerFromModul(Modul):
+    if(webBot.driver.current_url != baseIndexURL): # Schaut ob die index schon offen ist
+        soup = BeautifulSoup(webBot.requestHTML(baseIndexURL),"html.parser") #Öffnet wenn nicht die Seite und packt es in soup rein
+    else:
+        soup = webBot.driver.page_source # Wenn seite schon offen ist packt er die html in soup rein.
+    card = soup.find("div", attrs={'class':'card', 'data-courseid':''+str(Modul.id)}) #Geht durch alle div mit class activity-content
+    for pic in card.find_all("img", attrs={'class': 'rounded-circle'}): #  Sucht nach allen img mit class rounded-circle
+        Modul.Trainers.append([pic.get('alt'),pic.get('src')]) # Fügt dem Modul die Trainer hinzu
+    return
+
     
 def LookUpClassBookLink(modul):
     newSoup = BeautifulSoup(webBot.requestHTML(modul.moodleGradeLink),"html.parser") # Lädt HTML in Beautiful Soup
@@ -135,6 +150,7 @@ def setUpMoodleClass(userID,LIST_of_Modules):
             LookUpClassBookLink(modul)
             ) #Erstellt den Link
         LookUpClassBookEntrys(modul) # Schreibt das Klassenbuch in das Array
+        LookUpTrainerFromModul(modul) # Holt die Namen und Bilder der Trainer
         #print(modul.id + " | " + modul.name + " | " +modul.moodleLink + " | " + modul.moodleGradeLink + " | " + modul.classbookLink)
         #if(modul == modules[len(modules)-1]):
         #   print(modul.ClassBookEntry)
