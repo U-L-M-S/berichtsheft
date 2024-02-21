@@ -83,9 +83,7 @@ baseClassbookURL = "https://lernplattform.gfn.de/mod/attendance/view.php?"
 #Debug
 
 def printToJson(List_Of_Modules):
-    newJson= "" # Temp variable für json
-    for mod in List_Of_Modules: # geht durch alle Module in der Liste durch
-        newJson = newJson + json.dumps(mod, default= lambda x: x.__dict__,indent=2) #Erstellt für jedes Modul eine json und verbindet sie später miteinander
+    newJson = json.dumps(List_Of_Modules, default= lambda x: x.__dict__,indent=2) #Erstellt für jedes Modul eine json und verbindet sie später miteinander
     return newJson# return verbundenen JSON
 
 #Funktionen
