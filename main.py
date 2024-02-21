@@ -1,8 +1,9 @@
-from Addons import webBot,module,UserInterface,docWriter
+from Addons import webBot,module,docWriter,calendar
 
 def main():
     #Starte Browser
     webBot.webBrowserInit()
+    #WebDriver = webBot.driver #So bekommt man den webDriver
     #LoginUser
     loginRetry = 3 #Versuche bis abbruch
     while(loginRetry != 0):
@@ -12,8 +13,11 @@ def main():
         else:
             loginRetry -=1
 
-    #Start Moodle Lookup:
-    
+    #Debug Stuff:
+    #webBot.requestHTML("https://lernplattform.gfn.de/calendar/view.php?view=month&time=1706742000")
+    #print(webBot.driver.get_cookies())
+    #print(calendar.preFormatCalendarData(webBot.requestHTML(calendar.createCalendarLink())))
+            
     #Moodle Lookup.
     userid, modules = module.searchModuleIDsAndUserID() 
     module.setUpMoodleClass(userid,modules)
@@ -25,8 +29,9 @@ def main():
     #modules[i].moodleGradeLink = STR Link zum Bewertung vom Modul
     #modules[i].classbookLink = STR Link zum Klassenbuch vom Modul
     #modules[i].ClassBookEntry = [] ARRAY mit Tag,Inhalt.
-    print(module.printToJson(modules))
+    #print(module.printToJson(modules))
     #docWriter.createMDFromModul("Wochentest",modules[4]) #Erstellt eine MD Datei DEBUG
+    input("Enter to exit.")
     return
 
 if(__name__ == "__main__"):
