@@ -5,38 +5,38 @@ Gets all the information from a Moodle site and stores it  locally. The program 
 Edit credentials.json  to include your Moodle username and password, then run the script
 the script takes about 1-2 Min to crawl  all courses of a moodle site.  The data is stored in the "module_data" folder.<br/>
 <br/>
-Folder Structure (pre run):<br/>
+# Folder Structure (pre run):<br/>
 [MainFolder]<br/>
-|--> Addons  (contains all addon files)<br/>
-    |--> docWriter.py    (class for writing documentation in a file)<br/>
-    |--> module.py        (main class for module handling)<br/>
-    |--> webBot.py          (WebBrowser automation using Selenium WebDriver)<br/>
-|--credentials.json (contains login information)<br/>
-|--main.py  (the main python file that runs the program)<br/>
-|--requirements.txt  (python dependencies)<br/>
-|--README.md   (this document)<br/>
-<br/><br/>
-Folder Structure (after run):<br/>
+- |--> Addons  (contains all addon files)<br/>
+  -  |--> docWriter.py    (class for writing documentation in a file)<br/>
+  -  |--> module.py        (main class for module handling)<br/>
+  -  |--> webBot.py          (WebBrowser automation using Selenium WebDriver)<br/>
+- |--credentials.json (contains login information)<br/>
+- |--main.py  (the main python file that runs the program)<br/>
+- |--requirements.txt  (python dependencies)<br/>
+- |--README.md   (this document)<br/>
+ <br/><br/>
+# Folder Structure (after run):<br/>
 [MainFolder]<br/>
-|--> Addons  (contains all addon files)<br/>
-    |--> docWriter.py    (class for writing documentation in a file)<br/>
-    |--> module.py        (main class for module handling)<br/>
-    |--> webBot.py          (WebBrowser automation using Selenium WebDriver)<br/>
-|--> module_data       (folder containing collected data from modules)<br/>
-    |--> NAME_OF_MODULE<br/>
-        |--> Classbook <br/>
-            |--DATE_OF_CLASS.txt (Classbook entry of the Day)<br/>
-            |...<br/>
-        |--> SchoolMaterials<br/>
-            |--NAME.pdf  (collected material, downloaded)<br/>
-            |...<br/>
-        |--> Trainers<br/>
-            |--Trainer.jpeg (Named after Trainer itself. Contains image of trainer.)<br/>
-        |--Data.json<br/>
-|--credentials.json (contains login information)<br/>
-|--main.py  (the main python file that runs the program)<br/>
-|--requirements.txt  (python dependencies)<br/>
-|--README.md   (this document)<br/>
+- |--> Addons  (contains all addon files)<br/>
+  -  |--> docWriter.py    (class for writing documentation in a file)<br/>
+  -  |--> module.py        (main class for module handling)<br/>
+  -  |--> webBot.py          (WebBrowser automation using Selenium WebDriver)<br/>
+- |--> module_data       (folder containing collected data from modules)<br/>
+  -  |--> NAME_OF_MODULE<br/>
+     -   |--> Classbook <br/>
+         -    |--DATE_OF_CLASS.txt (Classbook entry of the Day)<br/>
+         -    |...<br/>
+     -   |--> SchoolMaterials<br/>
+         -    |--NAME.pdf  (collected material, downloaded)<br/>
+         -    |...<br/>
+     -   |--> Trainers<br/>
+         -    |--Trainer.jpeg (Named after Trainer itself. Contains image of trainer.)<br/>
+     -   |--Data.json<br/>
+- |--credentials.json (contains login information)<br/>
+- |--main.py  (the main python file that runs the program)<br/>
+- |--requirements.txt  (python dependencies)<br/>
+- |--README.md   (this document)<br/>
 
 ## Requirements
 - python3
