@@ -5,10 +5,19 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
 
-def webBrowserInit():
-    global driver
-    # Initialize the WebDriver
-    driver = webdriver.Chrome()  # Chrome because some boxes does not content IDs in other browsers 
+def createWebBrowserOptions(headless=False):
+    options = webdriver.ChromeOptions()
+    if(headless == True):
+        options.add_argument("--headless") # Runs Chrome in headless mode. (No UI)
+    return options
+
+def webBrowserInit(options = None):
+    # Setup the browser and wait for it to be ready
+    if (options is not None):
+            driver = webdriver.Chrome(options=options)  # Chrome because some boxes does not content IDs in other browsers
+    else:
+        driver = webdriver.Chrome()  # Chrome because some boxes does not content IDs in other browsers
+    return driver
 
 def loadLoginInfo():
     global username,password
@@ -21,7 +30,7 @@ def loadLoginInfo():
     username = credentials['username']
     password = credentials['password']
 
-def logInGFN(): # Returns True wenn eingeloggt, False wenn nicht.
+def logInGFN(driver): # Returns True wenn eingeloggt, False wenn nicht.
     # Load the login page
     login_url = 'https://lernplattform.gfn.de/login/index.php'
     driver.get(login_url)
@@ -50,11 +59,17 @@ def logInGFN(): # Returns True wenn eingeloggt, False wenn nicht.
     return True
 
 
-def requestHTML(URL,timeout = 10):
+def requestHTML(driver,URL,timeout = 10):
     driver.get(URL)
     driver.implicitly_wait(timeout)
     return driver.page_source
 
+def closeBrowser(driver):
+    if driver is not None:
+        try:
+            driver.quit()
+        except Exception as e:
+            pass
 
     # Close the WebDriver
     #driver.quit()
