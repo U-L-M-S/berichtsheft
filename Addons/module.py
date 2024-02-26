@@ -142,7 +142,7 @@ def __UpdateSchoolMaterials(driver,modul,formated_name):
                 webBot.WebDriverWait(driver,10)
     return
 
-def saveAndUpdateJsonData(List_Of_Modules):
+def saveAndUpdateJsonData(List_Of_Modules,Full_Update = True):
     #Does a For loop  through all Moduls in the List of Modules and calls the compare function for each one
     #If there are changes they will be saved to the Json file
     pathlib.Path("./module_data").mkdir(parents=True, exist_ok=True)
@@ -160,46 +160,46 @@ def saveAndUpdateJsonData(List_Of_Modules):
             json.dump(__compareGetNewJson(modul), open('./module_data/' + formated_name + '/' + 'Data.json', 'w'), indent=2)
             print("Module not found created: ", formated_name )
         
-        #check if folder for Trainer exists
-        pathlib.Path("./module_data/" + formated_name + '/Trainers').mkdir(parents=True, exist_ok=True)
-        #Get and Update Trainers
-        __UpdateTrainers(modul,formated_name)
+        if Full_Update == True:
+            #check if folder for Trainer exists
+            pathlib.Path("./module_data/" + formated_name + '/Trainers').mkdir(parents=True, exist_ok=True)
+            #Get and Update Trainers
+            __UpdateTrainers(modul,formated_name)
 
-        #Check if folder for classbook exists
-        pathlib.Path("./module_data/" + formated_name + '/Classbook').mkdir(parents=True, exist_ok=True)
-        #Get and Update ClassBook
-        __UpdateClassBook(modul,formated_name)
+            #Check if folder for classbook exists
+            pathlib.Path("./module_data/" + formated_name + '/Classbook').mkdir(parents=True, exist_ok=True)
+            #Get and Update ClassBook
+            __UpdateClassBook(modul,formated_name)
 
-        #Check if folder for SchoolMaterials exists
-        pathlib.Path("./module_data/" + formated_name + '/SchoolMaterials').mkdir(parents=True, exist_ok=True)
-        if modul.schoolmaterials != [] :
-            options = webBot.createWebBrowserOptions(headless=True)
-            options.add_experimental_option('prefs', {
-            "download.default_directory": os.getcwd()+'\\module_data\\' + formated_name + "\\SchoolMaterials", #Change default directory for downloads
-            "download.prompt_for_download": False, #To auto download the file
-            "download.directory_upgrade": True,
-            "plugins.always_open_pdf_externally": True #It will not show PDF directly in chrome
-            })
-            driver = webBot.webBrowserInit(options=options)
-            webBot.loadLoginInfo()
-            webBot.logInGFN(driver)
-            #Get and Update SchoolMaterials
-            __UpdateSchoolMaterials(driver, modul,formated_name)
-            waiting = True
-            while waiting:
-                still_waiting = False
+            #Check if folder for SchoolMaterials exists
+            pathlib.Path("./module_data/" + formated_name + '/SchoolMaterials').mkdir(parents=True, exist_ok=True)
+            if modul.schoolmaterials != [] :
+                options = webBot.createWebBrowserOptions(headless=True)
+                options.add_experimental_option('prefs', {
+                "download.default_directory": os.getcwd()+'\\module_data\\' + formated_name + "\\SchoolMaterials", #Change default directory for downloads
+                "download.prompt_for_download": False, #To auto download the file
+                "download.directory_upgrade": True,
+                "plugins.always_open_pdf_externally": True #It will not show PDF directly in chrome
+                })
+                driver = webBot.webBrowserInit(options=options)
+                webBot.loadLoginInfo()
+                webBot.logInGFN(driver)
+                #Get and Update SchoolMaterials
+                __UpdateSchoolMaterials(driver, modul,formated_name)
+                waiting = True
+                while waiting:
+                    still_waiting = False
+                    for x in os.listdir('./module_data/' + formated_name + "/SchoolMaterials"):
+                        if ".crdownload" in x:
+                            still_waiting = True
+                            break
+                    waiting = still_waiting
+                counting = 0
+                temp = modul.schoolmaterials
+                modul.schoolmaterials = []
                 for x in os.listdir('./module_data/' + formated_name + "/SchoolMaterials"):
-                    if ".crdownload" in x:
-                        still_waiting = True
-                        break
-                waiting = still_waiting
-            counting = 0
-            temp = modul.schoolmaterials
-            modul.schoolmaterials = []
-            for x in os.listdir('./module_data/' + formated_name + "/SchoolMaterials"):
-                modul.schoolmaterials.append([x.replace(".pdf",""),temp[counting][1]])
-            driver.close()
-            
+                    modul.schoolmaterials.append([x.replace(".pdf",""),temp[counting][1]])
+                driver.close()
     return
 
 #Funktionen

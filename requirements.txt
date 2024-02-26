@@ -1,3 +1,6 @@
+os
+pathlib
+requests
 selenium
 bs4
 urllib

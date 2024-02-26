@@ -30,6 +30,7 @@ def main():
     #modules[i].ClassBookEntry = [] ARRAY mit Tag,Inhalt.
 
     module.saveAndUpdateJsonData(modules)
+    module.saveAndUpdateJsonData(modules,False)
     #print(module.printToJson(modules))
     #docWriter.createMDFromModul("Wochentest",modules[4]) #Erstellt eine MD Datei DEBUG
     #input("Enter to exit.")
